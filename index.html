@@ -581,7 +581,7 @@
         margin-top: 8px;
     }
     
-    /* SEÇÃO DE DEPOIMENTOS */
+    /* SEÇÃO DE DEPOIMENTOS - 5 AO MESMO TEMPO */
     .testimonials-section {
         margin: 80px 0;
         position: relative;
@@ -592,50 +592,58 @@
     }
     
     .testimonials-container {
-        position: relative;
-        min-height: 300px;
-        overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
     }
     
     .testimonial {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s, transform 0.8s;
-        pointer-events: none;
-    }
-    
-    .testimonial.active {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-        position: relative;
-    }
-    
-    .testimonial-content {
         background: rgba(30, 30, 30, 0.9);
         padding: 25px;
         border-radius: 15px;
         border-left: 4px solid #00ff99;
-        margin-bottom: 25px;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .testimonial:hover {
+        transform: translateY(-5px);
+        border-left-color: #00cc7a;
+        box-shadow: 0 10px 25px rgba(0, 255, 153, 0.15);
     }
     
     .testimonial-text {
         color: #eee;
         line-height: 1.7;
         font-style: italic;
-        font-size: 16px;
-        margin-bottom: 15px;
+        font-size: 15px;
+        margin-bottom: 20px;
+        flex-grow: 1;
+        position: relative;
+        padding-left: 15px;
+    }
+    
+    .testimonial-text:before {
+        content: '"';
+        position: absolute;
+        left: -5px;
+        top: -10px;
+        font-size: 40px;
+        color: rgba(0, 255, 153, 0.3);
+        font-family: Georgia, serif;
     }
     
     .testimonial-author {
         display: flex;
         align-items: center;
         gap: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 15px;
+        margin-top: auto;
     }
     
     .author-avatar {
@@ -674,28 +682,56 @@
         background: rgba(255, 255, 255, 0.1);
         border-radius: 12px;
         font-size: 11px;
-        margin-left: 10px;
+        margin-left: 8px;
+    }
+    
+    .source-badge.facebook {
+        background: rgba(59, 89, 152, 0.2);
+        color: #8b9dc3;
+        border: 1px solid rgba(59, 89, 152, 0.4);
+    }
+    
+    .source-badge.telegram {
+        background: rgba(0, 136, 204, 0.2);
+        color: #66b3ff;
+        border: 1px solid rgba(0, 136, 204, 0.4);
     }
     
     .testimonials-controls {
         display: flex;
         justify-content: center;
         gap: 10px;
-        margin-top: 30px;
+        margin-top: 40px;
     }
     
-    .testimonial-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.2);
+    .refresh-button {
+        padding: 10px 25px;
+        background: linear-gradient(135deg, #00ff99, #00cc7a);
+        color: #000;
+        border: none;
+        border-radius: 25px;
+        font-weight: 600;
         cursor: pointer;
         transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
     }
     
-    .testimonial-dot.active {
-        background: #00ff99;
-        transform: scale(1.2);
+    .refresh-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 255, 153, 0.3);
+    }
+    
+    .testimonial-counter {
+        display: inline-block;
+        padding: 8px 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        font-size: 13px;
+        color: #ccc;
+        margin-left: 15px;
     }
     
     /* Responsividade */
@@ -703,6 +739,10 @@
         .buyer-notification {
             right: 10px;
             width: 240px;
+        }
+        
+        .testimonials-container {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
     }
     
@@ -768,7 +808,12 @@
             padding: 30px 20px;
         }
         
-        .testimonial-content {
+        .testimonials-container {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .testimonial {
             padding: 20px;
         }
     }
@@ -807,6 +852,17 @@
         
         .testimonial-text {
             font-size: 14px;
+        }
+        
+        .testimonials-controls {
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .testimonial-counter {
+            margin-left: 0;
+            margin-top: 10px;
         }
     }
     
@@ -984,16 +1040,24 @@
             </div>
         </div>
         
-        <!-- Seção de Depoimentos -->
+        <!-- Seção de Depoimentos - 5 AO MESMO TEMPO -->
         <div class="testimonials-section fade-in delay-3">
-            <h3>🌟 DEPOIMENTOS DE QUEM JÁ COMPROU</h3>
+            <h3>🌟 O QUE NOSSOS CLIENTES ESTÃO FALANDO</h3>
+            <p style="text-align: center; color: #ccc; margin-bottom: 30px; font-size: 16px;">
+                Mais de 1.237 DJs e músicos já transformaram suas carreiras com a Central DJ
+            </p>
             
             <div class="testimonials-container" id="testimonials-container">
                 <!-- Depoimentos serão inseridos via JavaScript -->
             </div>
             
-            <div class="testimonials-controls" id="testimonial-dots">
-                <!-- Pontos de navegação serão inseridos via JavaScript -->
+            <div class="testimonials-controls">
+                <button class="refresh-button" id="refresh-testimonials">
+                    🔄 Ver Mais Depoimentos
+                </button>
+                <div class="testimonial-counter" id="testimonial-counter">
+                    Mostrando 5 de 15 depoimentos
+                </div>
             </div>
         </div>
         
@@ -1020,6 +1084,11 @@
         const buyerType = document.getElementById('buyer-type');
         const notificationTime = document.getElementById('notification-time');
         
+        // Elementos dos depoimentos
+        const testimonialsContainer = document.getElementById('testimonials-container');
+        const refreshButton = document.getElementById('refresh-testimonials');
+        const testimonialCounter = document.getElementById('testimonial-counter');
+        
         // Dados para notificações
         const maleNames = ['Carlos Silva', 'Miguel Santos', 'Pedro Oliveira', 'Lucas Costa', 'Bruno Pereira', 
                           'Rafael Souza', 'Diego Almeida', 'André Lima', 'Felipe Rodrigues', 'Gustavo Ferreira'];
@@ -1043,8 +1112,8 @@
             'MS': ['Campo Grande', 'Dourados', 'Três Lagoas', 'Corumbá']
         };
         
-        // Dados para depoimentos
-        const testimonials = [
+        // Banco de dados de depoimentos (15 depoimentos no total)
+        const allTestimonials = [
             {
                 text: "A Central DJ mudou minha forma de trabalhar! Tenho acesso a tudo que preciso em um só lugar. O conteúdo gospel é simplesmente incrível e super organizado.",
                 name: "Carlos Eduardo",
@@ -1052,7 +1121,7 @@
                 location: "São Paulo, SP",
                 gender: "male",
                 avatarId: 45,
-                source: "Facebook"
+                source: "facebook"
             },
             {
                 text: "Comprei para meu filho que está começando como DJ e ele ficou maravilhado! A quantidade de músicas e efeitos é impressionante. Vale cada centavo!",
@@ -1061,7 +1130,7 @@
                 location: "Belo Horizonte, MG",
                 gender: "female",
                 avatarId: 67,
-                source: "Telegram"
+                source: "telegram"
             },
             {
                 text: "Como DJ de academia, os packs fitness são perfeitos! As playlists são energéticas e atualizadas semanalmente. Melhor investimento que fiz este ano!",
@@ -1070,7 +1139,7 @@
                 location: "Rio de Janeiro, RJ",
                 gender: "male",
                 avatarId: 23,
-                source: "Facebook"
+                source: "facebook"
             },
             {
                 text: "Sou produtora de eventos e uso a Central DJ para todas as minhas festas. O conteúdo para casamentos e 15 anos é completo e muito bem organizado!",
@@ -1079,7 +1148,7 @@
                 location: "Curitiba, PR",
                 gender: "female",
                 avatarId: 89,
-                source: "Telegram"
+                source: "telegram"
             },
             {
                 text: "O pack retro é nostálgico e perfeito! Consegui reviver os anos 80/90 nas minhas festas. A qualidade do áudio é excelente e a organização facilita muito.",
@@ -1088,7 +1157,7 @@
                 location: "Porto Alegre, RS",
                 gender: "male",
                 avatarId: 12,
-                source: "Facebook"
+                source: "facebook"
             },
             {
                 text: "Comprei para minha festa de formatura e foi a melhor decisão! As músicas estavam todas organizadas por década e gênero. Todos elogiaram a seleção musical!",
@@ -1097,21 +1166,102 @@
                 location: "Florianópolis, SC",
                 gender: "female",
                 avatarId: 34,
-                source: "Telegram"
+                source: "telegram"
+            },
+            {
+                text: "Como DJ iniciante, ter acesso a +9TB de conteúdo por apenas R$8 foi surreal! Aprendi muito com a organização e já estou conseguindo trabalhos.",
+                name: "Lucas Mendes",
+                type: "DJ Iniciante",
+                location: "Salvador, BA",
+                gender: "male",
+                avatarId: 56,
+                source: "facebook"
+            },
+            {
+                text: "Uso os efeitos sonoros para minhas produções e são de altíssima qualidade! A biblioteca é completa e atualizada constantemente.",
+                name: "Roberto Silva",
+                type: "Produtor Musical",
+                location: "Fortaleza, CE",
+                gender: "male",
+                avatarId: 78,
+                source: "telegram"
+            },
+            {
+                text: "Para eventos corporativos, encontrei tudo que precisava. As playlists são profissionais e adequadas para todos os tipos de público.",
+                name: "Carla Rocha",
+                type: "Organizadora de Eventos",
+                location: "Brasília, DF",
+                gender: "female",
+                avatarId: 90,
+                source: "facebook"
+            },
+            {
+                text: "O suporte via Telegram é excelente! Sempre que tenho dúvidas sobre algum conteúdo, a equipe responde rapidamente.",
+                name: "Paulo Henrique",
+                type: "DJ Residencial",
+                location: "Goiânia, GO",
+                gender: "male",
+                avatarId: 11,
+                source: "telegram"
+            },
+            {
+                text: "Investimento que se paga na primeira festa! Consegui montar um repertório completo para um casamento com apenas R$8.",
+                name: "Sandra Martins",
+                type: "DJ Profissional",
+                location: "Vitória, ES",
+                gender: "female",
+                avatarId: 22,
+                source: "facebook"
+            },
+            {
+                text: "Os packs de funk são incríveis! Atualizados com as últimas tendências. Meus clientes sempre elogiam a seleção musical.",
+                name: "Thiago Barbosa",
+                type: "DJ de Bailes",
+                location: "Cuiabá, MT",
+                gender: "male",
+                avatarId: 33,
+                source: "telegram"
+            },
+            {
+                text: "Como professora de dança, uso muito os playlists da Central DJ. São perfeitas para aulas e workshops.",
+                name: "Isabela Fernandes",
+                type: "Professora de Dança",
+                location: "Campo Grande, MS",
+                gender: "female",
+                avatarId: 44,
+                source: "facebook"
+            },
+            {
+                text: "Para um hobby que virou profissão, a Central DJ foi essencial! Tenho material para anos de trabalho por um valor simbólico.",
+                name: "Marcos Vinícius",
+                type: "DJ Amador",
+                location: "Recife, PE",
+                gender: "male",
+                avatarId: 55,
+                source: "telegram"
+            },
+            {
+                text: "Recomendo para todos os DJs! O conteúdo é vasto, organizado e de qualidade. Suporte excelente e atualizações constantes.",
+                name: "Vanessa Lopes",
+                type: "DJ Profissional",
+                location: "Curitiba, PR",
+                gender: "female",
+                avatarId: 66,
+                source: "facebook"
             }
         ];
         
-        let currentTestimonialIndex = 0;
-        let testimonialInterval;
+        let currentTestimonialSet = [];
+        let usedTestimonials = new Set();
+        let currentDisplayCount = 5;
         
         // Variáveis de controle do áudio
         let isAudioPlaying = false;
         let playTimer = null;
         let audioDuration = 0;
         
-        // Controle de nomes já usados
+        // Controle de nomes já usados nas notificações
         let usedNotificationNames = new Set();
-        let usedTestimonialNames = new Set();
         
         // Carregar metadados do áudio
         effectAudio.addEventListener('loadedmetadata', function() {
@@ -1172,83 +1322,79 @@
             }, 8000);
         }
         
-        // Função para inicializar depoimentos
-        function initializeTestimonials() {
-            const container = document.getElementById('testimonials-container');
-            const dotsContainer = document.getElementById('testimonial-dots');
+        // Função para selecionar 5 depoimentos aleatórios
+        function selectRandomTestimonials(count = 5) {
+            // Se todos já foram usados, resetar
+            if (usedTestimonials.size >= allTestimonials.length - count) {
+                usedTestimonials.clear();
+            }
             
-            // Limpar containers
-            container.innerHTML = '';
-            dotsContainer.innerHTML = '';
+            // Filtrar depoimentos não usados
+            const availableTestimonials = allTestimonials.filter((_, index) => !usedTestimonials.has(index));
             
-            // Criar elementos dos depoimentos
-            testimonials.forEach((testimonial, index) => {
-                // Criar elemento do depoimento
+            // Selecionar aleatoriamente
+            const selected = [];
+            const indices = [];
+            
+            while (selected.length < count && availableTestimonials.length > 0) {
+                const randomIndex = Math.floor(Math.random() * availableTestimonials.length);
+                const testimonial = availableTestimonials[randomIndex];
+                const originalIndex = allTestimonials.indexOf(testimonial);
+                
+                selected.push(testimonial);
+                indices.push(originalIndex);
+                usedTestimonials.add(originalIndex);
+                
+                // Remover da lista disponível
+                availableTestimonials.splice(randomIndex, 1);
+            }
+            
+            return selected;
+        }
+        
+        // Função para renderizar depoimentos
+        function renderTestimonials(testimonials) {
+            testimonialsContainer.innerHTML = '';
+            
+            testimonials.forEach(testimonial => {
                 const testimonialElement = document.createElement('div');
-                testimonialElement.className = `testimonial ${index === 0 ? 'active' : ''}`;
+                testimonialElement.className = 'testimonial fade-in';
                 testimonialElement.innerHTML = `
                     <div class="testimonial-content">
-                        <p class="testimonial-text">"${testimonial.text}"</p>
+                        <p class="testimonial-text">${testimonial.text}</p>
                         <div class="testimonial-author">
                             <img src="https://randomuser.me/api/portraits/${testimonial.gender}/${testimonial.avatarId}.jpg" 
                                  alt="${testimonial.name}" class="author-avatar">
                             <div class="author-info">
-                                <div class="author-name">${testimonial.name} <span class="source-badge">${testimonial.source}</span></div>
+                                <div class="author-name">
+                                    ${testimonial.name} 
+                                    <span class="source-badge ${testimonial.source}">
+                                        ${testimonial.source === 'facebook' ? 'Facebook' : 'Telegram'}
+                                    </span>
+                                </div>
                                 <div class="author-type">${testimonial.type}</div>
                                 <div class="author-location">📍 ${testimonial.location}</div>
                             </div>
                         </div>
                     </div>
                 `;
-                container.appendChild(testimonialElement);
-                
-                // Criar ponto de navegação
-                const dot = document.createElement('div');
-                dot.className = `testimonial-dot ${index === 0 ? 'active' : ''}`;
-                dot.dataset.index = index;
-                dot.addEventListener('click', () => showTestimonial(index));
-                dotsContainer.appendChild(dot);
+                testimonialsContainer.appendChild(testimonialElement);
             });
             
-            // Iniciar rotação automática
-            startTestimonialRotation();
+            // Atualizar contador
+            testimonialCounter.textContent = `Mostrando ${testimonials.length} de ${allTestimonials.length} depoimentos`;
         }
         
-        // Função para mostrar depoimento específico
-        function showTestimonial(index) {
-            const testimonials = document.querySelectorAll('.testimonial');
-            const dots = document.querySelectorAll('.testimonial-dot');
+        // Função para carregar novos depoimentos
+        function loadNewTestimonials() {
+            currentTestimonialSet = selectRandomTestimonials(currentDisplayCount);
+            renderTestimonials(currentTestimonialSet);
             
-            // Esconder todos os depoimentos
-            testimonials.forEach(testimonial => {
-                testimonial.classList.remove('active');
+            // Adicionar animação de entrada
+            const testimonialElements = document.querySelectorAll('.testimonial');
+            testimonialElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
             });
-            
-            // Remover active de todos os dots
-            dots.forEach(dot => {
-                dot.classList.remove('active');
-            });
-            
-            // Mostrar depoimento selecionado
-            testimonials[index].classList.add('active');
-            dots[index].classList.add('active');
-            
-            currentTestimonialIndex = index;
-            
-            // Reiniciar timer de rotação
-            clearInterval(testimonialInterval);
-            startTestimonialRotation();
-        }
-        
-        // Função para iniciar rotação automática
-        function startTestimonialRotation() {
-            testimonialInterval = setInterval(() => {
-                let nextIndex = currentTestimonialIndex + 1;
-                if (nextIndex >= testimonials.length) {
-                    nextIndex = 0;
-                }
-                showTestimonial(nextIndex);
-            }, 120000); // 2 minutos
         }
         
         // Função para tocar efeito sonoro
@@ -1365,8 +1511,11 @@
             imageElement.style.opacity = '1';
         }
         
-        // Inicializar notificações e depoimentos
-        initializeTestimonials();
+        // Inicializar depoimentos
+        loadNewTestimonials();
+        
+        // Configurar botão de atualização
+        refreshButton.addEventListener('click', loadNewTestimonials);
         
         // Gerar primeira notificação após 3 segundos
         setTimeout(generateRandomNotification, 3000);
@@ -1381,6 +1530,9 @@
                 setTimeout(generateRandomNotification, 1000);
             });
         });
+        
+        // Rotação automática de depoimentos a cada 2 minutos
+        setInterval(loadNewTestimonials, 120000);
     });
     </script>
 </body>
