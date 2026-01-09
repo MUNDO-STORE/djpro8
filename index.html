@@ -468,7 +468,244 @@
         line-height: 1.6;
     }
     
+    /* NOTIFICAÇÃO DE COMPRADORES FLUTUANTE */
+    .buyer-notification {
+        position: fixed;
+        top: 150px;
+        right: 20px;
+        width: 260px;
+        background: rgba(20, 20, 20, 0.95);
+        border: 1px solid rgba(0, 255, 153, 0.3);
+        border-radius: 12px;
+        padding: 15px;
+        z-index: 999;
+        box-shadow: 
+            0 5px 25px rgba(0, 0, 0, 0.5),
+            0 0 30px rgba(0, 255, 153, 0.1);
+        backdrop-filter: blur(10px);
+        opacity: 0;
+        transform: translateX(100%);
+        transition: opacity 0.5s, transform 0.5s;
+        pointer-events: none;
+    }
+    
+    .buyer-notification.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+    }
+    
+    .buyer-notification-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .buyer-notification-header h4 {
+        color: #00ff99;
+        font-size: 14px;
+        margin: 0;
+        flex-grow: 1;
+    }
+    
+    .notification-badge {
+        background: linear-gradient(135deg, #00ff99, #00cc7a);
+        color: #000;
+        padding: 3px 8px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: bold;
+    }
+    
+    .buyer-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+    }
+    
+    .buyer-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #00ff99;
+    }
+    
+    .buyer-details {
+        flex-grow: 1;
+    }
+    
+    .buyer-name {
+        font-weight: 600;
+        font-size: 14px;
+        color: #fff;
+    }
+    
+    .buyer-location {
+        font-size: 11px;
+        color: #aaa;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 2px;
+    }
+    
+    .buyer-type {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+    
+    .buyer-type.dj {
+        background: rgba(0, 255, 153, 0.2);
+        color: #00ff99;
+        border: 1px solid rgba(0, 255, 153, 0.4);
+    }
+    
+    .buyer-type.common {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ccc;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .notification-time {
+        font-size: 11px;
+        color: #666;
+        text-align: right;
+        margin-top: 8px;
+    }
+    
+    /* SEÇÃO DE DEPOIMENTOS */
+    .testimonials-section {
+        margin: 80px 0;
+        position: relative;
+        padding: 40px 30px;
+        background: rgba(21, 21, 21, 0.9);
+        border-radius: 20px;
+        border: 1px solid rgba(0, 255, 153, 0.1);
+    }
+    
+    .testimonials-container {
+        position: relative;
+        min-height: 300px;
+        overflow: hidden;
+    }
+    
+    .testimonial {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s, transform 0.8s;
+        pointer-events: none;
+    }
+    
+    .testimonial.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        position: relative;
+    }
+    
+    .testimonial-content {
+        background: rgba(30, 30, 30, 0.9);
+        padding: 25px;
+        border-radius: 15px;
+        border-left: 4px solid #00ff99;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .testimonial-text {
+        color: #eee;
+        line-height: 1.7;
+        font-style: italic;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #00ff99;
+    }
+    
+    .author-info {
+        flex-grow: 1;
+    }
+    
+    .author-name {
+        font-weight: 600;
+        color: #fff;
+        font-size: 16px;
+    }
+    
+    .author-type {
+        font-size: 13px;
+        color: #00ff99;
+        margin-top: 3px;
+    }
+    
+    .author-location {
+        font-size: 12px;
+        color: #aaa;
+        margin-top: 2px;
+    }
+    
+    .source-badge {
+        display: inline-block;
+        padding: 3px 10px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        font-size: 11px;
+        margin-left: 10px;
+    }
+    
+    .testimonials-controls {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+    }
+    
+    .testimonial-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .testimonial-dot.active {
+        background: #00ff99;
+        transform: scale(1.2);
+    }
+    
     /* Responsividade */
+    @media (max-width: 1024px) {
+        .buyer-notification {
+            right: 10px;
+            width: 240px;
+        }
+    }
+    
     @media (max-width: 768px) {
         .container {
             padding: 15px;
@@ -522,6 +759,18 @@
             padding: 20px;
             margin: 60px 0;
         }
+        
+        .buyer-notification {
+            display: none; /* Esconder em dispositivos móveis */
+        }
+        
+        .testimonials-section {
+            padding: 30px 20px;
+        }
+        
+        .testimonial-content {
+            padding: 20px;
+        }
     }
     
     @media (max-width: 480px) {
@@ -554,6 +803,10 @@
         
         .price {
             font-size: 48px;
+        }
+        
+        .testimonial-text {
+            font-size: 14px;
         }
     }
     
@@ -593,6 +846,26 @@
            onclick="fbq('track', 'Lead')">
             🔓
         </a>
+    </div>
+    
+    <!-- Notificação de Compradores (Flutuante) -->
+    <div class="buyer-notification" id="buyer-notification">
+        <div class="buyer-notification-header">
+            <h4>🎵 Compra Recente</h4>
+            <div class="notification-badge">AGORA</div>
+        </div>
+        <div class="buyer-info">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Comprador" class="buyer-avatar" id="buyer-avatar">
+            <div class="buyer-details">
+                <div class="buyer-name" id="buyer-name">Carregando...</div>
+                <div class="buyer-location">
+                    <span>📍</span>
+                    <span id="buyer-location">Brasil</span>
+                </div>
+                <div class="buyer-type dj" id="buyer-type">DJ PROFISSIONAL</div>
+            </div>
+        </div>
+        <div class="notification-time" id="notification-time">há alguns segundos</div>
     </div>
     
     <div class="container">
@@ -711,6 +984,19 @@
             </div>
         </div>
         
+        <!-- Seção de Depoimentos -->
+        <div class="testimonials-section fade-in delay-3">
+            <h3>🌟 DEPOIMENTOS DE QUEM JÁ COMPROU</h3>
+            
+            <div class="testimonials-container" id="testimonials-container">
+                <!-- Depoimentos serão inseridos via JavaScript -->
+            </div>
+            
+            <div class="testimonials-controls" id="testimonial-dots">
+                <!-- Pontos de navegação serão inseridos via JavaScript -->
+            </div>
+        </div>
+        
         <!-- Footer -->
         <div class="footer fade-in delay-3">
             <p>Conteúdo digital destinado a estudo, organização e uso pessoal.</p>
@@ -726,16 +1012,244 @@
         const effectAudio = document.getElementById('effect-audio');
         const soundIndicator = document.getElementById('sound-indicator');
         
+        // Elementos da notificação
+        const buyerNotification = document.getElementById('buyer-notification');
+        const buyerAvatar = document.getElementById('buyer-avatar');
+        const buyerName = document.getElementById('buyer-name');
+        const buyerLocation = document.getElementById('buyer-location');
+        const buyerType = document.getElementById('buyer-type');
+        const notificationTime = document.getElementById('notification-time');
+        
+        // Dados para notificações
+        const maleNames = ['Carlos Silva', 'Miguel Santos', 'Pedro Oliveira', 'Lucas Costa', 'Bruno Pereira', 
+                          'Rafael Souza', 'Diego Almeida', 'André Lima', 'Felipe Rodrigues', 'Gustavo Ferreira'];
+        const femaleNames = ['Ana Santos', 'Maria Oliveira', 'Julia Costa', 'Fernanda Silva', 'Patrícia Souza',
+                            'Camila Lima', 'Beatriz Santos', 'Amanda Pereira', 'Isabela Almeida', 'Letícia Rodrigues'];
+        const states = ['SP', 'RJ', 'MG', 'RS', 'PR', 'SC', 'BA', 'PE', 'CE', 'DF', 'GO', 'ES', 'MT', 'MS'];
+        const cities = {
+            'SP': ['São Paulo', 'Campinas', 'São José dos Campos', 'Ribeirão Preto'],
+            'RJ': ['Rio de Janeiro', 'Niterói', 'Nova Iguaçu', 'São Gonçalo'],
+            'MG': ['Belo Horizonte', 'Uberlândia', 'Contagem', 'Juiz de Fora'],
+            'RS': ['Porto Alegre', 'Caxias do Sul', 'Pelotas', 'Canoas'],
+            'PR': ['Curitiba', 'Londrina', 'Maringá', 'Ponta Grossa'],
+            'SC': ['Florianópolis', 'Joinville', 'Blumenau', 'São José'],
+            'BA': ['Salvador', 'Feira de Santana', 'Vitória da Conquista', 'Camaçari'],
+            'PE': ['Recife', 'Jaboatão dos Guararapes', 'Olinda', 'Caruaru'],
+            'CE': ['Fortaleza', 'Caucaia', 'Juazeiro do Norte', 'Maracanaú'],
+            'DF': ['Brasília'],
+            'GO': ['Goiânia', 'Aparecida de Goiânia', 'Anápolis', 'Rio Verde'],
+            'ES': ['Vitória', 'Vila Velha', 'Serra', 'Cariacica'],
+            'MT': ['Cuiabá', 'Várzea Grande', 'Rondonópolis', 'Sinop'],
+            'MS': ['Campo Grande', 'Dourados', 'Três Lagoas', 'Corumbá']
+        };
+        
+        // Dados para depoimentos
+        const testimonials = [
+            {
+                text: "A Central DJ mudou minha forma de trabalhar! Tenho acesso a tudo que preciso em um só lugar. O conteúdo gospel é simplesmente incrível e super organizado.",
+                name: "Carlos Eduardo",
+                type: "DJ Profissional",
+                location: "São Paulo, SP",
+                gender: "male",
+                avatarId: 45,
+                source: "Facebook"
+            },
+            {
+                text: "Comprei para meu filho que está começando como DJ e ele ficou maravilhado! A quantidade de músicas e efeitos é impressionante. Vale cada centavo!",
+                name: "Mariana Santos",
+                type: "Cliente Comum",
+                location: "Belo Horizonte, MG",
+                gender: "female",
+                avatarId: 67,
+                source: "Telegram"
+            },
+            {
+                text: "Como DJ de academia, os packs fitness são perfeitos! As playlists são energéticas e atualizadas semanalmente. Melhor investimento que fiz este ano!",
+                name: "Ricardo Lima",
+                type: "DJ de Academia",
+                location: "Rio de Janeiro, RJ",
+                gender: "male",
+                avatarId: 23,
+                source: "Facebook"
+            },
+            {
+                text: "Sou produtora de eventos e uso a Central DJ para todas as minhas festas. O conteúdo para casamentos e 15 anos é completo e muito bem organizado!",
+                name: "Juliana Costa",
+                type: "Produtora de Eventos",
+                location: "Curitiba, PR",
+                gender: "female",
+                avatarId: 89,
+                source: "Telegram"
+            },
+            {
+                text: "O pack retro é nostálgico e perfeito! Consegui reviver os anos 80/90 nas minhas festas. A qualidade do áudio é excelente e a organização facilita muito.",
+                name: "Fernando Alves",
+                type: "DJ Especializado",
+                location: "Porto Alegre, RS",
+                gender: "male",
+                avatarId: 12,
+                source: "Facebook"
+            },
+            {
+                text: "Comprei para minha festa de formatura e foi a melhor decisão! As músicas estavam todas organizadas por década e gênero. Todos elogiaram a seleção musical!",
+                name: "Beatriz Oliveira",
+                type: "Cliente Comum",
+                location: "Florianópolis, SC",
+                gender: "female",
+                avatarId: 34,
+                source: "Telegram"
+            }
+        ];
+        
+        let currentTestimonialIndex = 0;
+        let testimonialInterval;
+        
         // Variáveis de controle do áudio
         let isAudioPlaying = false;
         let playTimer = null;
         let audioDuration = 0;
+        
+        // Controle de nomes já usados
+        let usedNotificationNames = new Set();
+        let usedTestimonialNames = new Set();
         
         // Carregar metadados do áudio
         effectAudio.addEventListener('loadedmetadata', function() {
             audioDuration = effectAudio.duration;
             console.log('Duração do áudio:', audioDuration, 'segundos');
         });
+        
+        // Função para gerar notificação aleatória
+        function generateRandomNotification() {
+            // Limpar notificação anterior
+            buyerNotification.classList.remove('active');
+            
+            // Escolher gênero aleatório (50/50)
+            const isMale = Math.random() > 0.5;
+            const nameList = isMale ? maleNames : femaleNames;
+            
+            // Encontrar nome não usado
+            let availableNames = nameList.filter(name => !usedNotificationNames.has(name));
+            if (availableNames.length === 0) {
+                usedNotificationNames.clear();
+                availableNames = nameList;
+            }
+            
+            const randomName = availableNames[Math.floor(Math.random() * availableNames.length)];
+            usedNotificationNames.add(randomName);
+            
+            // Escolher estado e cidade
+            const randomState = states[Math.floor(Math.random() * states.length)];
+            const cityOptions = cities[randomState];
+            const randomCity = cityOptions[Math.floor(Math.random() * cityOptions.length)];
+            
+            // Escolher tipo (60% DJ, 40% comum)
+            const isDJ = Math.random() > 0.4;
+            const type = isDJ ? "DJ PROFISSIONAL" : "MÚSICO AMADOR";
+            
+            // Gerar ID de avatar aleatório
+            const avatarId = Math.floor(Math.random() * 99) + 1;
+            const genderPath = isMale ? 'men' : 'women';
+            
+            // Atualizar elementos
+            buyerAvatar.src = `https://randomuser.me/api/portraits/${genderPath}/${avatarId}.jpg`;
+            buyerName.textContent = randomName;
+            buyerLocation.textContent = `${randomCity}, ${randomState}`;
+            buyerType.textContent = type;
+            buyerType.className = isDJ ? 'buyer-type dj' : 'buyer-type common';
+            
+            // Atualizar tempo (sempre "há alguns segundos")
+            notificationTime.textContent = 'há alguns segundos';
+            
+            // Mostrar notificação
+            setTimeout(() => {
+                buyerNotification.classList.add('active');
+            }, 100);
+            
+            // Esconder notificação após 8 segundos
+            setTimeout(() => {
+                buyerNotification.classList.remove('active');
+            }, 8000);
+        }
+        
+        // Função para inicializar depoimentos
+        function initializeTestimonials() {
+            const container = document.getElementById('testimonials-container');
+            const dotsContainer = document.getElementById('testimonial-dots');
+            
+            // Limpar containers
+            container.innerHTML = '';
+            dotsContainer.innerHTML = '';
+            
+            // Criar elementos dos depoimentos
+            testimonials.forEach((testimonial, index) => {
+                // Criar elemento do depoimento
+                const testimonialElement = document.createElement('div');
+                testimonialElement.className = `testimonial ${index === 0 ? 'active' : ''}`;
+                testimonialElement.innerHTML = `
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"${testimonial.text}"</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/${testimonial.gender}/${testimonial.avatarId}.jpg" 
+                                 alt="${testimonial.name}" class="author-avatar">
+                            <div class="author-info">
+                                <div class="author-name">${testimonial.name} <span class="source-badge">${testimonial.source}</span></div>
+                                <div class="author-type">${testimonial.type}</div>
+                                <div class="author-location">📍 ${testimonial.location}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(testimonialElement);
+                
+                // Criar ponto de navegação
+                const dot = document.createElement('div');
+                dot.className = `testimonial-dot ${index === 0 ? 'active' : ''}`;
+                dot.dataset.index = index;
+                dot.addEventListener('click', () => showTestimonial(index));
+                dotsContainer.appendChild(dot);
+            });
+            
+            // Iniciar rotação automática
+            startTestimonialRotation();
+        }
+        
+        // Função para mostrar depoimento específico
+        function showTestimonial(index) {
+            const testimonials = document.querySelectorAll('.testimonial');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            
+            // Esconder todos os depoimentos
+            testimonials.forEach(testimonial => {
+                testimonial.classList.remove('active');
+            });
+            
+            // Remover active de todos os dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Mostrar depoimento selecionado
+            testimonials[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            currentTestimonialIndex = index;
+            
+            // Reiniciar timer de rotação
+            clearInterval(testimonialInterval);
+            startTestimonialRotation();
+        }
+        
+        // Função para iniciar rotação automática
+        function startTestimonialRotation() {
+            testimonialInterval = setInterval(() => {
+                let nextIndex = currentTestimonialIndex + 1;
+                if (nextIndex >= testimonials.length) {
+                    nextIndex = 0;
+                }
+                showTestimonial(nextIndex);
+            }, 120000); // 2 minutos
+        }
         
         // Função para tocar efeito sonoro
         function playSoundEffect() {
@@ -811,7 +1325,7 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         
         // Observar todas as seções
-        document.querySelectorAll('.section').forEach(section => {
+        document.querySelectorAll('.section, .testimonials-section').forEach(section => {
             sectionObserver.observe(section);
         });
         
@@ -850,6 +1364,23 @@
             imageElement.style.visibility = 'visible';
             imageElement.style.opacity = '1';
         }
+        
+        // Inicializar notificações e depoimentos
+        initializeTestimonials();
+        
+        // Gerar primeira notificação após 3 segundos
+        setTimeout(generateRandomNotification, 3000);
+        
+        // Configurar intervalo para notificações (40 segundos)
+        setInterval(generateRandomNotification, 40000);
+        
+        // Gerar notificação ao clicar em qualquer botão de compra
+        const buyButtons = document.querySelectorAll('.btn, .floating-btn');
+        buyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                setTimeout(generateRandomNotification, 1000);
+            });
+        });
     });
     </script>
 </body>
